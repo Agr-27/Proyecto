@@ -42,5 +42,5 @@ def ronda(sel):
 
     # Return para sacar la lista ganadores fuera de la funcion
     return ganadores
-ganadores_ronda = ronda(sel) # Se llama la funcion
-print("\nEquipos que pasan a la siguiente ronda:", ganadores_ronda) # Se visualiza los equipos ganadores
+Octavos = ronda(sel) # Se llama la funcion
+print("\nEquipos que pasan a la siguiente ronda:", Octavos) # Se visualiza los equipos ganadores
