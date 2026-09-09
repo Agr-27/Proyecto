@@ -21,7 +21,7 @@ enumeracion(10,11)
 enumeracion(11,12)
 enumeracion(12,13)
 enumeracion(13,14)
-enumeracion(14,15)
+enumeracion(14,15)                # Las funciones se puden simplificar con un ciclo for
 
 # Llamamos la funcion de pregunta
 p1 = pregunta("octavos", 1)
