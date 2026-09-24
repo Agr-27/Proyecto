@@ -1,4 +1,22 @@
-sel = ["Brasil", "Francia", "Argentina", "Alemania", "España", "Inglaterra", "Portugal", "Bélgica", "Países Bajos", "Italia", "Croacia", "Uruguay", "México", "Estados Unidos", "Japón", "Marruecos"]
+import random # Uso de libreria random para la generacion de goles aleatorios
+sel = [
+    "Brasil",
+    "Francia",
+    "Argentina",
+    "Alemania",
+    "España",
+    "Inglaterra",
+    "Portugal",
+    "Bélgica",
+    "Países Bajos",
+    "Italia",
+    "Croacia",
+    "Uruguay",
+    "México",
+    "Estados Unidos",
+    "Japón",
+    "Marruecos",
+]
 
 def enumeracion(n,lista): # Funcion que da los equipos en forma de lista
     print(f"{lista}. {sel[n]}")
@@ -40,6 +58,26 @@ c4 = pregunta("cuartos", 4)
 
 s1 = pregunta("semis", 1)
 s2 = pregunta("semis", 2)
+
+ganadores = [
+for i in range(0, len(sel), 2):
+    e1 = sel[i]
+    e2 = sel[i + 1]
+    print(f"Partido: {e1} vs {e2}")
+    gp = int(input("\nIngresa 1 o 2 para escoger al ganador\n"))
+
+    if gp == 1:
+        golesg = random.randint(1, 5)
+        golesp = random.randint(0, golesg - 1)
+        print(f"\nEl marcador final es: {golesg} - {golesp} Favor {e1}\nPartido: {e1} vs {e2}")
+        ganadores.append(e1)
+    elif gp == 2:
+        golesg = random.randint(1, 5)
+        golesp = random.randint(0, golesg - 1)
+        print(f"\nEl marcador final es: {golesp} - {golesg} Favor {e2}\nPartido: {e1} vs {e2}")
+        ganadores.append(e2)
+
+    input("\nPresiona Enter para continuar...")
 
 # Operacion de los minutos totales de las fases
 octavos = (p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8
