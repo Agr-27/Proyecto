@@ -1,5 +1,5 @@
 import random # Uso de libreria random para la generacion de goles aleatorios
-sel = [
+SEL = [
     "Brasil",
     "Francia",
     "Argentina",
@@ -18,63 +18,66 @@ sel = [
     "Marruecos",
 ]
 
-def enumeracion(n,lista): # Funcion que da los equipos en forma de lista
-    print(f"{lista}. {sel[n]}")
+def enumeracion(indice, lista): # Funcion que da los equipos en forma de lista
+    print(f"{lista}. {SEL[indice]}")
+"""Acomodo de las selecciones en forma de una lista enumerada"""
 
 # Funcion para la pregunta de cuantos minuts duro el partido de cierta fase
 def pregunta(fase, numero):
-    return int(input(f"\nElige los minutos que quieres que dure el partido de {fase} {numero} (90 o 120): "))
+    return int(input(f"\nElige los minutos que quieres que dure 
+    el partido de {fase} {numero} (90 o 120): "))
+"""Pregunta para decidir si se fue a tiempos extra el partido"""
 
-enumeracion(0,1)
-enumeracion(1,2)
-enumeracion(2,3)
-enumeracion(3,4) # Uso de funcion enumeracion
-enumeracion(4,5)
-enumeracion(5,6)
-enumeracion(6,7)
-enumeracion(7,8)
-enumeracion(8,9)
-enumeracion(9,10)
-enumeracion(10,11)
-enumeracion(11,12)
-enumeracion(12,13)
-enumeracion(13,14)
-enumeracion(14,15)                # Las funciones se puden simplificar con un ciclo for
+enumeracion(0, 1)
+enumeracion(1, 2)
+enumeracion(2, 3)
+enumeracion(3, 4) # Uso de funcion enumeracion
+enumeracion(4, 5)
+enumeracion(5, 6)
+enumeracion(6, 7)
+enumeracion(7, 8)
+enumeracion(8, 9)
+enumeracion(9, 10)
+enumeracion(10, 11)
+enumeracion(11, 12)
+enumeracion(12, 13)
+enumeracion(13, 14)
+enumeracion(14, 15)                # Las funciones se puden simplificar con un ciclo for
 
 # Llamamos la funcion de pregunta
-p1 = pregunta("octavos", 1)
-p2 = pregunta("octavos", 2)
-p3 = pregunta("octavos", 3)
-p4 = pregunta("octavos", 4)
-p5 = pregunta("octavos", 5)
-p6 = pregunta("octavos", 6)
-p7 = pregunta("octavos", 7)
-p8 = pregunta("octavos", 8)
+mins_octavos_1 = pregunta("octavos", 1)
+mins_octavos_2 = pregunta("octavos", 2)
+mins_octavos_3 = pregunta("octavos", 3)
+mins_octavos_4 = pregunta("octavos", 4)
+mins_octavos_5 = pregunta("octavos", 5)
+mins_octavos_6 = pregunta("octavos", 6)
+mins_octavos_7 = pregunta("octavos", 7)
+mins_octavos_8 = pregunta("octavos", 8)
 
-c1 = pregunta("cuartos", 1)
-c2 = pregunta("cuartos", 2)
-c3 = pregunta("cuartos", 3)
-c4 = pregunta("cuartos", 4)
+mins_cuartos_1 = pregunta("cuartos", 1)
+mins_cuartos_2 = pregunta("cuartos", 2)
+mins_cuartos_3 = pregunta("cuartos", 3)
+mins_cuartos_4 = pregunta("cuartos", 4)
 
-s1 = pregunta("semis", 1)
-s2 = pregunta("semis", 2)
+mins_semis_1 = pregunta("semis", 1)
+mins_semis_2 = pregunta("semis", 2)
 
-ganadores = [
-for i in range(0, len(sel), 2):
-    e1 = sel[i]
-    e2 = sel[i + 1]
+ganadores = []
+for i in range(0, len(SEL), 2):
+    e1 = SEL[i]
+    e2 = SEL[i + 1]
     print(f"Partido: {e1} vs {e2}")
-    gp = int(input("\nIngresa 1 o 2 para escoger al ganador\n"))
+    opcion_ganador = int(input("\nIngresa 1 o 2 para escoger al ganador\n"))
 
-    if gp == 1:
-        golesg = random.randint(1, 5)
-        golesp = random.randint(0, golesg - 1)
-        print(f"\nEl marcador final es: {golesg} - {golesp} Favor {e1}\nPartido: {e1} vs {e2}")
+    if opcion_ganador == 1:
+        goles_ganador = random.randint(1, 5)
+        goles_perdedor = random.randint(0, goles_ganador - 1)
+        print(f"\nEl marcador final es: {goles_ganador} - {goles_perdedor} Favor {e1}\nPartido: {e1} vs {e2}")
         ganadores.append(e1)
-    elif gp == 2:
-        golesg = random.randint(1, 5)
-        golesp = random.randint(0, golesg - 1)
-        print(f"\nEl marcador final es: {golesp} - {golesg} Favor {e2}\nPartido: {e1} vs {e2}")
+    elif opcion_ganador == 2:
+        goles_ganador = random.randint(1, 5)
+        goles_perdedor = random.randint(0, goles_ganador - 1)
+        print(f"\nEl marcador final es: {goles_perdedor} - {goles_ganador} Favor {e2}\nPartido: {e1} vs {e2}")
         ganadores.append(e2)
 
     input("\nPresiona Enter para continuar...")
