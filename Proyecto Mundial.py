@@ -47,16 +47,11 @@ def jugar_partido(equipos):
         #Decide al ganador y asigna sus goles
         if opcion == 1:
             print(f"Marcador final: {e1} {goles_ganador} - {goles_perdedor} {e2}")
-            ganador = e1
+            ganadores.append(e1)
         elif opcion == 2:
             print(f"Marcador final: {e1} {goles_perdedor} - {goles_ganador} {e2}")
-            ganador = e2
-            
-        ganadores.append(ganador)
+            ganadores.append(e2)
         input("\nPresiona Enter para continuar...")
- 
-    if len(ganadores) == 1:
-        return ganadores[0]
         
     return ganadores
  
@@ -87,20 +82,26 @@ for i in range(1, 2):
     total_final += pregunta("final", i)
  
 
-#RESULTADOS Y SIMULACIÓN 
+#Resultados y simulacion 
 
 print("\n--- INICIAN LOS OCTAVOS ---")
 octavos = jugar_partido(SEL)
+print("\nEquipos clasificados a Cuartos de Final:", octavos)
+input("\nPresiona Enter para continuar con los Cuartos de Final...")
 print("\nLa fase de octavos sumando sus partidos dura un total de:", total_octavos, "minutos")
 
 print("\n--- INICIAN LOS CUARTOS ---")
 cuartos = jugar_partido(octavos)
+print("\nEquipos clasificados a Semifinales:", cuartos)
+input("\nPresiona Enter para continuar con las Semifinales...")
 print("\nLa fase de cuartos sumando sus partidos dura un total de:", total_cuartos, "minutos")
 
 print("\n--- INICIAN LAS SEMIFINALES ---")
 semis = jugar_partido(cuartos)
+print("\nEquipos clasificados a la Gran Final:", semis)
+input("\nPresiona Enter para continuar con la Gran Final...")
 print("\nLa fase de semis sumando sus partidos dura un total de:", total_semis, "minutos")
 
 print("\n--- INICIA LA GRAN FINAL ---")
 final = jugar_partido(semis)
-print(f"\nEl campeón es {final} con un partido de {total_final} minutos")
+print(f"\n¡El campeón es {final[0]} con un partido de {total_final} minutos!")
