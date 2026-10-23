@@ -6,7 +6,10 @@ SEL = [
     "Países Bajos", "Italia", "Croacia", "Uruguay",
     "México", "Estados Unidos", "Japón", "Marruecos",
 ]
- 
+
+#Matriz para guardar el historial de todos los partidos
+historial = []
+
 def enumeracion(indice, numero):
     """Imprime una selección con su número de lista."""
     print(f"{numero}. {SEL[indice]}")
@@ -24,7 +27,7 @@ def pregunta(fase, numero):
  
     return minutos
  
-def jugar_partido(equipos):
+def jugar_partido(equipos, nombre_fase):
     """Juega un partido entre dos equipos y regresa al ganador."""
     ganadores = []
     
@@ -46,14 +49,34 @@ def jugar_partido(equipos):
  
         #Decide al ganador y asigna sus goles
         if opcion == 1:
-            print(f"Marcador final: {e1} {goles_ganador} - {goles_perdedor} {e2}")
-            ganadores.append(e1)
+            goles_e1 = goles_ganador
+            goles_e2 = goles_perdedor
+            ganador = e1
         elif opcion == 2:
-            print(f"Marcador final: {e1} {goles_perdedor} - {goles_ganador} {e2}")
-            ganadores.append(e2)
+            goles_e1 = goles_perdedor
+            goles_e2 = goles_ganador
+            ganador = e2
+        print(f"Marcador final: {e1} {goles_e1} - {goles_e2} {e2}")
+        ganadores.append(ganador)
         input("\nPresiona Enter para continuar...")
+     
+        #Se agrega una fila (lista) con los datos del partido a la matriz
+        partido_resumen = [nombre_fase, e1, e2, f"{goles_e1}-{goles_e2}", ganador]
+        historial.append(partido_resumen)
         
     return ganadores
+
+def imprime_matriz(matriz):
+    """Crea la matriz para mostrar el historial de los partidos"""
+    i = 0 
+    for linea in matriz:
+        j = 0 
+        for columna in linea:
+            elemento = matriz[i][j]
+            print(f"{elemento:<16}", end="") #End para que el historial quede en forma de tabla y no se quede todo de corrido como lista
+            j = j + 1 
+        print() 
+        i = i + 1 
  
 #Se muestra en consola los equipos seleccionados en forma de lista
 print("\nSelecciones Participantes:")
@@ -85,23 +108,27 @@ for i in range(1, 2):
 #Resultados y simulacion 
 
 print("\n--- INICIAN LOS OCTAVOS ---")
-octavos = jugar_partido(SEL)
+octavos = jugar_partido(SEL, "Octavos") 
 print("\nEquipos clasificados a Cuartos de Final:", octavos)
 input("\nPresiona Enter para continuar con los Cuartos de Final...")
 print("\nLa fase de octavos sumando sus partidos dura un total de:", total_octavos, "minutos")
 
 print("\n--- INICIAN LOS CUARTOS ---")
-cuartos = jugar_partido(octavos)
+cuartos = jugar_partido(octavos, "Cuartos") 
 print("\nEquipos clasificados a Semifinales:", cuartos)
 input("\nPresiona Enter para continuar con las Semifinales...")
 print("\nLa fase de cuartos sumando sus partidos dura un total de:", total_cuartos, "minutos")
 
 print("\n--- INICIAN LAS SEMIFINALES ---")
-semis = jugar_partido(cuartos)
+semis   = jugar_partido(cuartos, "Semis") 
 print("\nEquipos clasificados a la Gran Final:", semis)
 input("\nPresiona Enter para continuar con la Gran Final...")
 print("\nLa fase de semis sumando sus partidos dura un total de:", total_semis, "minutos")
 
 print("\n--- INICIA LA GRAN FINAL ---")
-final = jugar_partido(semis)
+final   = jugar_partido(semis, "Final")
 print(f"\n¡El campeón es {final[0]} con un partido de {total_final} minutos!")
+
+#Impresión final de la matriz
+print("                    HISTORIAL DEL TORNEO                    ")
+imprime_matriz(historial)
