@@ -107,28 +107,33 @@ for i in range(1, 2):
 
 #Resultados y simulacion 
 
-print("\n--- INICIAN LOS OCTAVOS ---")
-octavos = jugar_partido(SEL, "Octavos") 
-print("\nEquipos clasificados a Cuartos de Final:", octavos)
+#Uso de cadenas de texto
+texto_clasificados = "Equipos clasificados a Cuartos de Final: "
+texto_semis = texto_clasificados.replace("Cuartos de Final", "Semifinales")
+texto_final = texto_clasificados.replace("Cuartos de Final", "la Gran Final")
+
+print("\n--- inician los octavos ---".upper())
+octavos = jugar_partido(SEL, "Octavos")
+print("\n", texto_clasificados, octavos)
 input("\nPresiona Enter para continuar con los Cuartos de Final...")
 print("\nLa fase de octavos sumando sus partidos dura un total de:", total_octavos, "minutos")
 
-print("\n--- INICIAN LOS CUARTOS ---")
+print("\n--- inician los cuartos ---".upper())
 cuartos = jugar_partido(octavos, "Cuartos") 
-print("\nEquipos clasificados a Semifinales:", cuartos)
+print("\n", texto_semis, cuartos)
 input("\nPresiona Enter para continuar con las Semifinales...")
 print("\nLa fase de cuartos sumando sus partidos dura un total de:", total_cuartos, "minutos")
 
-print("\n--- INICIAN LAS SEMIFINALES ---")
+print("\n--- inician las semifinales ---".upper())
 semis   = jugar_partido(cuartos, "Semis") 
-print("\nEquipos clasificados a la Gran Final:", semis)
+print("\n", texto_final, semis)
 input("\nPresiona Enter para continuar con la Gran Final...")
 print("\nLa fase de semis sumando sus partidos dura un total de:", total_semis, "minutos")
 
-print("\n--- INICIA LA GRAN FINAL ---")
+print("\n--- inicia la gran final ---".upper())
 final   = jugar_partido(semis, "Final")
 print(f"\n¡El campeón es {final[0]} con un partido de {total_final} minutos!")
 
 #Impresión final de la matriz
-print("                    HISTORIAL DEL TORNEO                    ")
+print("                    historial del torneo                    ".upper())
 imprime_matriz(historial)
