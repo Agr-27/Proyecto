@@ -60,7 +60,7 @@ def jugar_partido(equipos, nombre_fase):
         ganadores.append(ganador)
         input("\nPresiona Enter para continuar...")
      
-        #Se agrega una fila (lista) con los datos del partido a la matriz
+        # Se agrega una fila (lista) con los datos del partido a la matriz
         partido_resumen = [nombre_fase, e1, e2, f"{goles_e1}-{goles_e2}", ganador]
         historial.append(partido_resumen)
         
