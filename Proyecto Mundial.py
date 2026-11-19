@@ -132,8 +132,9 @@ print("\nLa fase de semis sumando sus partidos dura un total de:", total_semis, 
 
 print("\n--- inicia la gran final ---".upper())
 final   = jugar_partido(semis, "Final")
-print(f"\n¡El campeón es {final[0]} con un partido de {total_final} minutos!")
 
 # Impresión final de la matriz
 print("                    historial del torneo                    ".upper())
 imprime_matriz(historial)
+
+print(f"\n¡El campeón es {final[0]} con un partido de {total_final} minutos!")
