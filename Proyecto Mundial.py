@@ -1,4 +1,4 @@
-import random  #Librería random para generar los goles
+import random  # Librería random para generar los goles
  
 SEL = [
     "Brasil", "Francia", "Argentina", "Alemania",
@@ -7,7 +7,7 @@ SEL = [
     "México", "Estados Unidos", "Japón", "Marruecos",
 ]
 
-#Matriz para guardar el historial de todos los partidos
+# Matriz para guardar el historial de todos los partidos
 historial = []
 
 def enumeracion(indice, numero):
@@ -20,7 +20,7 @@ def pregunta(fase, numero):
                f"{fase} {numero} (90 o 120): ")
     minutos = int(input(mensaje))
  
-    #Se aseguro que solo si puedan asignar 90 o 120 mins
+    # Se aseguro que solo si puedan asignar 90 o 120 mins
     if minutos != 90 and minutos != 120:
         print("Valor no válido, será de 90 minutos")
         minutos = 90
@@ -31,15 +31,15 @@ def jugar_partido(equipos, nombre_fase):
     """Juega un partido entre dos equipos y regresa al ganador."""
     ganadores = []
     
-    #Ciclo for (inicio, condicion, secuencia) Se empieza del 0 por como la lista es interpretada por python
-    for i in range(0, len(equipos), 2): #len permite conocer cuantos datos en la lista
+    # Ciclo for (inicio, condicion, secuencia) Se empieza del 0 por como la lista es interpretada por python
+    for i in range(0, len(equipos), 2): # len permite conocer cuantos datos en la lista
         e1 = equipos[i]
-        e2 = equipos[i+1] #Selecciona los enfrentamientos
+        e2 = equipos[i+1] # Selecciona los enfrentamientos
         print(f"\nPartido: {e1} vs {e2}")
         
         opcion = int(input("Ingresa 1 o 2 para escoger al ganador\n"))
 
-        #Si se ingresa un número que no sea 1 o 2
+        # Si se ingresa un número que no sea 1 o 2
         if opcion != 1 and opcion != 2:
             print("Opción no válida, gana el equipo 1 por defecto")
             opcion = 1
@@ -47,7 +47,7 @@ def jugar_partido(equipos, nombre_fase):
         goles_ganador = random.randint(1, 5)
         goles_perdedor = random.randint(0, goles_ganador - 1)
  
-        #Decide al ganador y asigna sus goles
+        # Decide al ganador y asigna sus goles
         if opcion == 1:
             goles_e1 = goles_ganador
             goles_e2 = goles_perdedor
@@ -67,47 +67,47 @@ def jugar_partido(equipos, nombre_fase):
     return ganadores
 
 def imprime_matriz(matriz):
-    """Crea la matriz para mostrar el historial de los partidos"""
-    i = 0 
+    """Crea la matriz para mostrar el historial de los partidos."""
+    i = 0
     for linea in matriz:
-        j = 0 
+        j = 0
+        fila_texto = ""
         for columna in linea:
-            elemento = matriz[i][j]
-            print(f"{elemento:<16}", end="") #End para que el historial quede en forma de tabla y no se quede todo de corrido como lista
-            j = j + 1 
-        print() 
-        i = i + 1 
- 
-#Se muestra en consola los equipos seleccionados en forma de lista
+            elemento = str(matriz[i][j])
+            fila_texto = fila_texto + elemento + " | "
+            j = j + 1
+        print(fila_texto)
+        i = i + 1
+     
+# Se muestra en consola los equipos seleccionados en forma de lista
 print("\nSelecciones Participantes:")
-for i, equipo in enumerate(SEL, start=1): #Funcion enumerate(forma facil de realizar una lista sin un contador)
-    print(f"{i}. {equipo}")
+for i in range(len(SEL)):
+    enumeracion(i, i + 1)
 
-
-#Octavos 
+# Octavos 
 total_octavos = 0
 for i in range(1, 9):
     total_octavos += pregunta("octavos", i)
  
-#Cuartos 
+# Cuartos 
 total_cuartos = 0
 for i in range(1, 5):
     total_cuartos += pregunta("cuartos", i)
  
-#Semifinales 
+# Semifinales 
 total_semis = 0
 for i in range(1, 3):
     total_semis += pregunta("semis", i)
  
-#Final 
+# Final 
 total_final = 0
 for i in range(1, 2): 
     total_final += pregunta("final", i)
  
 
-#Resultados y simulacion 
+# Resultados y simulacion 
 
-#Uso de cadenas de texto
+# Uso de cadenas de texto
 texto_clasificados = "Equipos clasificados a Cuartos de Final: "
 texto_semis = texto_clasificados.replace("Cuartos de Final", "Semifinales")
 texto_final = texto_clasificados.replace("Cuartos de Final", "la Gran Final")
@@ -134,6 +134,6 @@ print("\n--- inicia la gran final ---".upper())
 final   = jugar_partido(semis, "Final")
 print(f"\n¡El campeón es {final[0]} con un partido de {total_final} minutos!")
 
-#Impresión final de la matriz
+# Impresión final de la matriz
 print("                    historial del torneo                    ".upper())
 imprime_matriz(historial)
